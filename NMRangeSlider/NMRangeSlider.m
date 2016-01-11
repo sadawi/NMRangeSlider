@@ -94,6 +94,8 @@ NSUInteger DeviceSystemMajorVersion() {
     _lowerTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5);
     _upperTouchEdgeInsets = UIEdgeInsetsMake(-5, -5, -5, -5);
 
+    _stepValueAnimated = YES;
+    
     [self addSubviews];
 
     [self.lowerHandle addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
@@ -647,7 +649,7 @@ NSUInteger DeviceSystemMajorVersion() {
             _upperHandle.highlighted=NO;
             [self bringSubviewToFront:_lowerHandle];
             
-            [self setLowerValue:newValue animated:_stepValueContinuously ? YES : NO];
+            [self setLowerValue:newValue animated:_stepValueContinuously ? self.stepValueAnimated : NO];
         }
         else
         {
@@ -665,7 +667,7 @@ NSUInteger DeviceSystemMajorVersion() {
         {
             _lowerHandle.highlighted=NO;
             [self bringSubviewToFront:_upperHandle];
-            [self setUpperValue:newValue animated:_stepValueContinuously ? YES : NO];
+            [self setUpperValue:newValue animated:_stepValueContinuously ? self.stepValueAnimated : NO];
         }
         else
         {
